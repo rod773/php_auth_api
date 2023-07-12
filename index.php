@@ -1,3 +1,3 @@
 <?php
 
-echo "<h1>My Project<h1>";
+require "vendor/autoload.php";
