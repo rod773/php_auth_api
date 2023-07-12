@@ -40,4 +40,21 @@ class JwtHandler
 
         return $this->jwt;
     }
+
+
+    public function jwtDecodeData($jwt_token)
+    {
+        try {
+
+            $decode = JWT::decode($jwt_token, new Key($this->jwt_secret, 'HS256'));
+
+            return [
+                "data" => $decode->data
+            ];
+        } catch (Exception $e) {
+            return [
+                "message" => $e->getMessage()
+            ];
+        }
+    }
 }
