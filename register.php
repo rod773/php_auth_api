@@ -6,7 +6,7 @@ header("Access-Control-Allow-Methods: POST");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-require "clases/Database.php";
+
 
 require "vendor/autoload.php";
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -35,9 +35,9 @@ function msg($success, $status, $message, $extra = [])
 $data = json_decode(file_get_contents("php://input"), true);
 
 if ($data) {
-    $name = $data['name'];
-    $email = $data['email'];
-    $password = $data['password'];
+    $name = trim($data['name']);
+    $email = trim($data['email']);
+    $password = trim($data['password']);
 }
 
 
@@ -57,11 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') :
 elseif (
     !isset($name) ||
     !isset($email) ||
-    !isset($password) ||
-    empty(trim($name)) ||
-    empty(trim($email)) ||
-    empty(trim($password))
-
+    !isset($password)
 ) :
 
     $fields = [
