@@ -1,7 +1,7 @@
 <?php
 
 
-class Auth extends JwtHandler
+class AuthMiddleware extends JwtHandler
 {
     protected $db;
     protected $headers;
