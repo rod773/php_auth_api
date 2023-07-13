@@ -34,6 +34,8 @@ function msg($success, $status, $message, $extra = [])
 
 $data = json_decode(file_get_contents("php://input"), true);
 
+
+
 if ($data) {
     $name = trim($data['name']);
     $email = trim($data['email']);
@@ -88,8 +90,6 @@ else :
 
     else :
         try {
-
-
 
             $check_email = "SELECT email FROM users WHERE email=:email";
             $check_email_stmt = $conn->prepare($check_email);
